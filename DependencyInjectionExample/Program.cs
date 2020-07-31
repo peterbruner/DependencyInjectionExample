@@ -9,12 +9,13 @@ namespace ConsoleApp3
         {
             var collection = new ServiceCollection();
             collection.AddScoped<IDataAccess, DataAccess>();
+            collection.AddScoped<IBusiness, Business>();
 
             var provider = collection.BuildServiceProvider();
 
             IDataAccess dal = provider.GetService<IDataAccess>();
+            IBusiness biz = provider.GetService<IBusiness>();
 
-            IBusiness biz = new Business(dal);
             var userInterface = new UserInterface(biz);
         }
     }
