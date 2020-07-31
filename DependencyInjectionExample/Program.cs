@@ -20,7 +20,9 @@ namespace ConsoleApp3
             Console.WriteLine("Enter your password");
             var password = Console.ReadLine();
 
-            IBusiness business = new BusinessV2();
+            // moved declaration of the concrete class to the "main" class
+            IDataAccess dal = new DataAccess();
+            IBusiness business = new Business(dal);
             business.SignUp(userName, password);
         }
     }
