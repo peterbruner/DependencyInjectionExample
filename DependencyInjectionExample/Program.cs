@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ConsoleApp3
+namespace DependencyInjectionExample
 {
     class Program
     {
