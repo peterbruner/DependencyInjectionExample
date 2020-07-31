@@ -13,7 +13,6 @@ namespace DependencyInjectionExample
 
             var provider = collection.BuildServiceProvider();
 
-            IDataAccess dal = provider.GetService<IDataAccess>();
             IBusiness biz = provider.GetService<IBusiness>();
 
             var userInterface = new UserInterface(biz);
