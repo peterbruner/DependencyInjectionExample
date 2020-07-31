@@ -12,6 +12,12 @@ namespace ConsoleApp3
 
     public class UserInterface
     {
+        private readonly IBusiness _business;
+        public UserInterface(IBusiness business)
+        {
+            _business = business;
+        }
+
         public void GetData()
         {
             Console.WriteLine("Enter your username");
@@ -20,10 +26,7 @@ namespace ConsoleApp3
             Console.WriteLine("Enter your password");
             var password = Console.ReadLine();
 
-            // moved declaration of the concrete class to the "main" class
-            IDataAccess dal = new DataAccess();
-            IBusiness business = new Business(dal);
-            business.SignUp(userName, password);
+            _business.SignUp(userName, password);
         }
     }
     public class Business : IBusiness
