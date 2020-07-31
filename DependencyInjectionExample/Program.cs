@@ -9,7 +9,7 @@ namespace DependencyInjectionExample
         {
             var collection = new ServiceCollection();
             collection.AddScoped<IDataAccess, DataAccess>();
-            collection.AddScoped<IBusiness, Business>();
+            collection.AddScoped<IBusiness, BusinessV2>();
 
             var provider = collection.BuildServiceProvider();
 
@@ -38,6 +38,7 @@ namespace DependencyInjectionExample
             _business.SignUp(userName, password);
         }
     }
+
     public class Business : IBusiness
     {
         private readonly IDataAccess _dataAccess;
@@ -54,6 +55,12 @@ namespace DependencyInjectionExample
 
     public class BusinessV2 : IBusiness
     {
+        private readonly IDataAccess _dataAccess;
+        public BusinessV2(IDataAccess dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
+
         public void SignUp(string userName, string password)
         {
             // validation
