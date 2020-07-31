@@ -7,7 +7,13 @@ namespace ConsoleApp3
     {
         static void Main(string[] args)
         {
-            IDataAccess dal = new DataAccess();
+            var collection = new ServiceCollection();
+            collection.AddScoped<IDataAccess, DataAccess>();
+
+            var provider = collection.BuildServiceProvider();
+
+            IDataAccess dal = provider.GetService<IDataAccess>();
+
             IBusiness biz = new Business(dal);
             var userInterface = new UserInterface(biz);
         }
