@@ -26,11 +26,15 @@ namespace ConsoleApp3
     }
     public class Business : IBusiness
     {
+        private readonly IDataAccess _dataAccess;
+        public Business(IDataAccess dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
         public void SignUp(string userName, string password)
         {
             // validation
-            var dataAccess = new DataAccess();
-            dataAccess.Store(userName, password);
+            _dataAccess.Store(userName, password);
         }
     }
 
