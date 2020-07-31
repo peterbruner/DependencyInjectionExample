@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleApp3
 {
@@ -6,7 +7,9 @@ namespace ConsoleApp3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IDataAccess dal = new DataAccess();
+            IBusiness biz = new Business(dal);
+            var userInterface = new UserInterface(biz);
         }
     }
 
