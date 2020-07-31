@@ -10,16 +10,15 @@ namespace DependencyInjectionExample
             var collection = new ServiceCollection();
             collection.AddScoped<IDataAccess, DataAccess>();
             collection.AddScoped<IBusiness, BusinessV2>();
+            collection.AddScoped<IUserInterface, UserInterface>();
 
             var provider = collection.BuildServiceProvider();
 
-            IBusiness biz = provider.GetService<IBusiness>();
-
-            var userInterface = new UserInterface(biz);
+            IUserInterface userInterface = provider.GetService<IUserInterface>();
         }
     }
 
-    public class UserInterface
+    public class UserInterface : IUserInterface
     {
         private readonly IBusiness _business;
         public UserInterface(IBusiness business)
@@ -84,5 +83,10 @@ namespace DependencyInjectionExample
     public interface IDataAccess
     {
         public void Store(string userName, string password);
+    }
+
+    public interface IUserInterface
+    {
+        public void GetData();
     }
 }
