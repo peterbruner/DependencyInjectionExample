@@ -64,8 +64,7 @@ namespace DependencyInjectionExample
         public void SignUp(string userName, string password)
         {
             // validation
-            var dataAccess = new DataAccess();
-            dataAccess.Store(userName, password);
+            _dataAccess.Store(userName, password);
         }
     }
 
