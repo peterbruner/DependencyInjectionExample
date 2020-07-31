@@ -20,11 +20,21 @@ namespace ConsoleApp3
             Console.WriteLine("Enter your password");
             var password = Console.ReadLine();
 
-            var business = new Business();
+            IBusiness business = new BusinessV2();
             business.SignUp(userName, password);
         }
     }
-    public class Business
+    public class Business : IBusiness
+    {
+        public void SignUp(string userName, string password)
+        {
+            // validation
+            var dataAccess = new DataAccess();
+            dataAccess.Store(userName, password);
+        }
+    }
+
+    public class BusinessV2 : IBusiness
     {
         public void SignUp(string userName, string password)
         {
@@ -40,5 +50,15 @@ namespace ConsoleApp3
         {
             // write the data to db
         }
+    }
+
+    public interface IBusiness
+    {
+        public void SignUp(string userName, string password);
+    }
+
+    public interface IDataAccess
+    {
+        public void Store(string userName, string password);
     }
 }
